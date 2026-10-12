@@ -81,6 +81,12 @@
 .music-toggle[aria-pressed="true"] .music-dot{animation:musicPulse .7s infinite alternate}
 @keyframes musicPulse{to{transform:scale(1.8);box-shadow:0 0 12px var(--lime)}}
 @media(max-width:600px){.music-toggle{right:10px;bottom:10px;padding:9px 11px;font-size:9px}.email-link{font-size:10px;max-width:100%}}
+
+.hala-player-card{position:fixed;right:18px;bottom:76px;z-index:100;width:min(340px,calc(100vw - 24px));padding:8px;background:#101010;border:1px solid var(--lime);box-shadow:5px 5px 0 #0008;border-radius:12px}
+.hala-player-head{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:5px 4px 9px;color:var(--lime);font:10px var(--mono)}
+.hala-player-close{background:transparent;color:#f4f0e8;border:0;font-size:22px;cursor:pointer;line-height:1}
+.hala-player-card iframe{display:block;width:100%;aspect-ratio:16/9;height:auto;border:0;border-radius:6px}
+@media(max-width:600px){.hala-player-card{right:12px;bottom:66px}}
 </style></head><body><div class="grain"></div>
 <nav class="topbar"><a href="#home" class="brand">MM<b>✳</b></a><div class="toplinks"><a href="#about">The human</a><a href="#sports">Match day</a><a href="#projects">The work</a><a href="#connect">Connect ↗</a></div><div class="live"><i></i> ALWAYS IN PLAY</div></nav>
 <main><header class="hero reference-cover" id="home" aria-label="Madhav.EXE portfolio cover">
@@ -115,21 +121,18 @@
 <script>
 (()=>{
  const btn=document.getElementById('music-toggle'),label=document.getElementById('music-label');
- if(!btn)return;let ctx=null,master=null,timer=null,step=0,playing=false;
- const notes=[110,0,164.81,220,0,196,146.83,0,110,0,164.81,246.94,220,0,196,164.81];
- function note(freq,when,duration){
-  if(!freq||!ctx||!master)return;
-  const osc=ctx.createOscillator(),gain=ctx.createGain();
-  osc.type='triangle';osc.frequency.setValueAtTime(freq,when);
-  gain.gain.setValueAtTime(.0001,when);gain.gain.exponentialRampToValueAtTime(.075,when+.025);gain.gain.exponentialRampToValueAtTime(.0001,when+duration);
-  osc.connect(gain);gain.connect(master);osc.start(when);osc.stop(when+duration+.03);
+ if(!btn)return;let playing=false,wrap=null;
+ function stop(){if(wrap){wrap.remove();wrap=null;}playing=false;btn.setAttribute('aria-pressed','false');label.textContent='PLAY HALA MADRID ♪';}
+ function play(){
+  if(playing){stop();return;}
+  wrap=document.createElement('div');wrap.className='hala-player-card';wrap.id='hala-player-card';
+  const head=document.createElement('div');head.className='hala-player-head';head.innerHTML='<span>🤍 HALA MADRID · REAL MADRID</span>';
+  const close=document.createElement('button');close.type='button';close.className='hala-player-close';close.setAttribute('aria-label','Close music player');close.textContent='×';close.addEventListener('click',stop);head.appendChild(close);
+  const frame=document.createElement('iframe');frame.title='Hala Madrid anthem on YouTube';frame.width='320';frame.height='180';frame.src='https://www.youtube-nocookie.com/embed/prhS2QvkUp0?autoplay=1&rel=0';frame.allow='autoplay; encrypted-media; picture-in-picture; web-share';frame.referrerPolicy='strict-origin-when-cross-origin';frame.allowFullscreen=true;
+  wrap.appendChild(head);wrap.appendChild(frame);document.body.appendChild(wrap);
+  playing=true;btn.setAttribute('aria-pressed','true');label.textContent='CLOSE HALA MADRID ×';
  }
- function tick(){if(!playing||!ctx)return;const now=ctx.currentTime;const n=notes[step%notes.length];note(n,now,.22);if(step%4===0)note(n? n/2:0,now,.32);if(step%8===4)note(329.63,now,.09);step++;timer=setTimeout(tick,250);}
- async function toggle(){
-  if(!playing){const AC=window.AudioContext||window.webkitAudioContext;if(!AC){label.textContent='AUDIO NOT SUPPORTED';return;}ctx=ctx||new AC();await ctx.resume();master=master||ctx.createGain();master.gain.value=.55;master.connect(ctx.destination);playing=true;step=0;tick();btn.setAttribute('aria-pressed','true');label.textContent='PAUSE THEME ♪';}
-  else{playing=false;clearTimeout(timer);if(ctx)await ctx.suspend();btn.setAttribute('aria-pressed','false');label.textContent='PLAY THEME ♪';}
- }
- btn.addEventListener('click',()=>{toggle().catch(()=>{label.textContent='TAP TO PLAY ♪';});});
+ btn.addEventListener('click',play);
 })();
 </script>\n<footer><span>© <span id="year"></span> MADHAV MEHTA</span><span>BUILD · COMPETE · REPEAT</span><a href="#home">Back to kick-off ↑</a></footer><div class="toast" id="toast">Object moved ✳</div>
 <script>

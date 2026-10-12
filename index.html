@@ -72,6 +72,15 @@
 .cover-micro-links{position:absolute;z-index:8;right:3%;bottom:3%;display:flex;gap:7px;flex-wrap:wrap}.cover-micro-links a{background:#f4f0e8;color:#101010;padding:9px;border:2px solid #101010;border-radius:7px;font:9px var(--mono);box-shadow:3px 3px 0 #000}
 .cover-game-status{position:absolute;z-index:8;left:3%;bottom:3%;background:var(--lime);color:#101010;padding:10px 12px;font:10px var(--mono);max-width:45%}
 @media(max-width:700px){.reference-cover-stage{height:calc(100svh - 55px);min-height:670px}.fallback-title{top:9%;left:5%;font-size:clamp(2.8rem,12vw,5rem);max-width:92%}.fallback-title small,.fallback-title b{font-size:9px;margin-top:12px}.fallback-board{right:4%;top:35%;font-size:8px;padding:8px}.cover-draggable-player{left:17%;height:45%;width:34%;bottom:7%}.cover-draggable-player b{font-size:9px;padding:5px}.cover-draggable-ball{width:43px;height:43px;font-size:25px;left:48%;bottom:10%}.cover-draggable-goal{right:4%;width:44%;height:21%;bottom:25%;border-width:5px}.cover-draggable-goal>span{top:-36px;font-size:9px;padding:6px}.cover-micro-links{right:3%;bottom:3%;gap:4px}.cover-micro-links a{padding:6px;font-size:8px}.cover-game-status{left:3%;bottom:3%;font-size:8px;max-width:48%;padding:8px}}
+
+/* Contact email + optional original stadium-synth theme */
+.email-link{display:inline-flex;align-items:center;gap:10px;margin-top:18px;padding:12px 16px;background:var(--lime);color:#101010;border:2px solid #101010;box-shadow:4px 4px 0 var(--pink);font:12px var(--mono);overflow-wrap:anywhere}
+.email-link:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--pink)}
+.music-toggle{position:fixed;right:18px;bottom:18px;z-index:60;display:flex;align-items:center;gap:9px;background:#101010;color:var(--lime);border:1px solid var(--lime);padding:11px 14px;border-radius:99px;font:10px var(--mono);text-transform:uppercase;box-shadow:4px 4px 0 #0008}
+.music-toggle .music-dot{width:8px;height:8px;border-radius:50%;background:var(--lime)}
+.music-toggle[aria-pressed="true"] .music-dot{animation:musicPulse .7s infinite alternate}
+@keyframes musicPulse{to{transform:scale(1.8);box-shadow:0 0 12px var(--lime)}}
+@media(max-width:600px){.music-toggle{right:10px;bottom:10px;padding:9px 11px;font-size:9px}.email-link{font-size:10px;max-width:100%}}
 </style></head><body><div class="grain"></div>
 <nav class="topbar"><a href="#home" class="brand">MM<b>✳</b></a><div class="toplinks"><a href="#about">The human</a><a href="#sports">Match day</a><a href="#projects">The work</a><a href="#connect">Connect ↗</a></div><div class="live"><i></i> ALWAYS IN PLAY</div></nav>
 <main><header class="hero reference-cover" id="home" aria-label="Madhav.EXE portfolio cover">
@@ -101,8 +110,28 @@
 <section class="projects" id="projects"><div class="section-head reveal"><div><div class="section-num">03 / The project locker room</div><h2 class="section-title">ALL MY<br>BUILDS.</h2></div><p class="section-note">Your GitHub repositories load here automatically, so the lineup can keep growing as you publish more projects.</p></div><div class="project-controls reveal"><button class="filter active" data-filter="all">All repos</button><button class="filter" data-filter="python">Python</button><button class="filter" data-filter="javascript">JavaScript</button><button class="filter" data-filter="other">Other</button><input class="search" id="repo-search" type="search" placeholder="Search my projects…" aria-label="Search projects"></div><p class="repo-status" id="repo-status" aria-live="polite">Connecting to the GitHub locker room…</p><div class="project-grid" id="repo-grid"><div class="empty">Loading the lineup…<br>Fetching public repositories from GitHub.</div></div><div style="margin-top:24px"><a class="pill" href="https://github.com/madhav88mehta-byte?tab=repositories" target="_blank" rel="noreferrer">Open every repository on GitHub ↗</a></div></section>
 <section class="toolkit" id="toolkit"><div class="section-head reveal"><div><div class="section-num">04 / The kit bag</div><h2 class="section-title">TOOLS OF<br>THE GAME.</h2></div><p class="section-note">A growing toolkit — always another skill to train.</p></div><div class="tool-grid reveal"><div class="tool"><strong>Python + data</strong><span>Analyse / Build</span></div><div class="tool"><strong>AI + ML</strong><span>Experiment</span></div><div class="tool"><strong>PCA + analytics</strong><span>Find patterns</span></div><div class="tool"><strong>GitHub + Vercel</strong><span>Ship it</span></div><div class="tool"><strong>Web development</strong><span>Make it real</span></div><div class="tool"><strong>Design thinking</strong><span>Make it feel</span></div></div></section>
 <section class="social" id="connect"><div class="section-head reveal"><div><div class="section-num">05 / Find me off the field</div><h2 class="section-title">CONNECT<br>WITH ME.</h2></div><p class="section-note">Got an interesting project, a collaboration, or just want to talk tech or sport? Say hello.</p></div><div class="social-grid reveal"><a class="social-card" href="https://github.com/madhav88mehta-byte" target="_blank" rel="noreferrer"><small>Code / experiments</small><strong>GitHub ↗</strong><span class="go">✳</span></a><a class="social-card" href="https://www.linkedin.com/in/madhav-mehta-a85a633a4/" target="_blank" rel="noreferrer"><small>Professional network</small><strong>LinkedIn ↗</strong><span class="go">↗</span></a><a class="social-card" href="https://www.instagram.com/madhavmehta817/" target="_blank" rel="noreferrer"><small>Life outside the code</small><strong>Instagram ↗</strong><span class="go">✳</span></a></div></section>
-<section class="contact"><div class="section-num">06 / Your move</div><h2>GOT A GOOD<br>IDEA? LET'S<br>MAKE IT REAL.</h2><div class="contact-row"><p>Collabs, projects, internships, or a conversation about something interesting. The next play could start here.</p><a class="cta" href="https://www.linkedin.com/in/madhav-mehta-a85a633a4/" target="_blank" rel="noreferrer">Make a move <span>↗</span></a></div></section></main>
-<footer><span>© <span id="year"></span> MADHAV MEHTA</span><span>BUILD · COMPETE · REPEAT</span><a href="#home">Back to kick-off ↑</a></footer><div class="toast" id="toast">Object moved ✳</div>
+<section class="contact"><div class="section-num">06 / Your move</div><h2>GOT A GOOD<br>IDEA? LET'S<br>MAKE IT REAL.</h2><div class="contact-row"><p>Collabs, projects, internships, or a conversation about something interesting. The next play could start here.</p><div><a class="cta" href="mailto:madhav89mehta@gmail.com?subject=Let's%20connect">Email me <span>↗</span></a><br><a class="email-link" href="mailto:madhav89mehta@gmail.com" aria-label="Email Madhav at madhav89mehta@gmail.com">✉ madhav89mehta@gmail.com</a></div></div></section></main>
+<button class="music-toggle" id="music-toggle" type="button" aria-pressed="false"><span class="music-dot"></span><span id="music-label">PLAY THEME ♪</span></button>
+<script>
+(()=>{
+ const btn=document.getElementById('music-toggle'),label=document.getElementById('music-label');
+ if(!btn)return;let ctx=null,master=null,timer=null,step=0,playing=false;
+ const notes=[110,0,164.81,220,0,196,146.83,0,110,0,164.81,246.94,220,0,196,164.81];
+ function note(freq,when,duration){
+  if(!freq||!ctx||!master)return;
+  const osc=ctx.createOscillator(),gain=ctx.createGain();
+  osc.type='triangle';osc.frequency.setValueAtTime(freq,when);
+  gain.gain.setValueAtTime(.0001,when);gain.gain.exponentialRampToValueAtTime(.075,when+.025);gain.gain.exponentialRampToValueAtTime(.0001,when+duration);
+  osc.connect(gain);gain.connect(master);osc.start(when);osc.stop(when+duration+.03);
+ }
+ function tick(){if(!playing||!ctx)return;const now=ctx.currentTime;const n=notes[step%notes.length];note(n,now,.22);if(step%4===0)note(n? n/2:0,now,.32);if(step%8===4)note(329.63,now,.09);step++;timer=setTimeout(tick,250);}
+ async function toggle(){
+  if(!playing){const AC=window.AudioContext||window.webkitAudioContext;if(!AC){label.textContent='AUDIO NOT SUPPORTED';return;}ctx=ctx||new AC();await ctx.resume();master=master||ctx.createGain();master.gain.value=.55;master.connect(ctx.destination);playing=true;step=0;tick();btn.setAttribute('aria-pressed','true');label.textContent='PAUSE THEME ♪';}
+  else{playing=false;clearTimeout(timer);if(ctx)await ctx.suspend();btn.setAttribute('aria-pressed','false');label.textContent='PLAY THEME ♪';}
+ }
+ btn.addEventListener('click',()=>{toggle().catch(()=>{label.textContent='TAP TO PLAY ♪';});});
+})();
+</script>\n<footer><span>© <span id="year"></span> MADHAV MEHTA</span><span>BUILD · COMPETE · REPEAT</span><a href="#home">Back to kick-off ↑</a></footer><div class="toast" id="toast">Object moved ✳</div>
 <script>
 
 const GITHUB_USER='madhav88mehta-byte';

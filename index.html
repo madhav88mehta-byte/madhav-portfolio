@@ -21,6 +21,21 @@
 .game-button{border:0;background:#d8ff38;color:#111;padding:11px 16px;font:11px var(--mono);text-transform:uppercase;border-radius:99px}
 .game-message{color:#d8ff38;font-weight:700}
 @media(max-width:600px){.game-board{min-height:300px}.goal{width:40%;height:43%;right:5%;top:18%;border-width:6px}.player-piece{width:86px;height:150px}.game-ball{width:43px;height:43px;font-size:22px}}
+
+/* Layout polish: keep the oversized hero type inside the viewport */
+.hero{min-height:min(900px,calc(100svh - 60px));padding-top:clamp(70px,10vh,125px);padding-bottom:clamp(110px,15vh,160px)}
+.hero h1{font-size:clamp(3.6rem,11.2vw,10.5rem);line-height:.82;max-width:100%;overflow-wrap:anywhere}
+.hero .hero-foot{position:relative;z-index:2;margin-top:12px}
+.drag-note{right:10%;top:8%}
+.ball-foot{right:11%;top:28%;width:clamp(58px,6vw,88px);height:clamp(58px,6vw,88px)}
+.ball-cricket{right:24%;bottom:8%}
+.star-sticker{left:auto;right:20%;bottom:14%}
+@media(min-width:1200px){.hero h1{font-size:clamp(8rem,10.8vw,11rem)}}
+@media(max-width:850px){.hero h1{font-size:clamp(4rem,12vw,7rem)}.ball-foot{top:22%;right:7%}.hero{padding-top:90px}}
+@media(max-width:600px){.hero{min-height:760px;padding-top:95px;padding-bottom:135px}.hero h1{font-size:clamp(3.25rem,15vw,5.7rem);line-height:.86;letter-spacing:-.085em;margin:38px 0 25px}.hero-foot{gap:15px}.hero-copy{max-width:90%;font-size:1rem}.hero-meta{font-size:9px}.drag-note{top:4%;right:6%;font-size:8px}.ball-foot{top:14%;right:6%;width:54px;height:54px}.ball-cricket{right:19%;bottom:5%;width:45px;height:45px}.star-sticker{right:16%;bottom:22%;width:39px;height:39px}.mini-score{bottom:5%;left:5%}}
+/* Accessible image-led player: add your photo at assets/madhav.jpg in the repo. */
+.player-piece{display:block!important;object-fit:cover;object-position:center 25%;padding:0!important;background:#ff6339;color:transparent!important;border-radius:48% 48% 16px 16px!important;overflow:hidden}
+.player-piece img{width:100%;height:100%;display:block;object-fit:cover;object-position:center 20%;border-radius:inherit}
 </style></head><body><div class="grain"></div>
 <nav class="topbar"><a href="#home" class="brand">MM<b>✳</b></a><div class="toplinks"><a href="#about">The human</a><a href="#sports">Match day</a><a href="#projects">The work</a><a href="#connect">Connect ↗</a></div><div class="live"><i></i> ALWAYS IN PLAY</div></nav>
 <main><header class="hero" id="home"><div class="eyebrow">Madhav Mehta / personal playground / 2026</div><div class="drag-note">Psst… grab the objects ↘</div><h1>PLAY<br><span class="stroke">DIFFERENT.</span><br><span class="color">BUILD</span> LOUD.</h1><div class="hero-foot"><div><p class="hero-copy">I turn <mark>“what if?”</mark> into things you can click, test, break, and hopefully love. Part tech brain, part creative chaos, always learning.</p><a href="#projects" class="pill">Explore my work ↓</a></div><div class="hero-meta">AI + DATA / CREATIVE BUILDS<br>FOOTBALL + CRICKET / BIG IDEAS<br>BASED IN INDIA ✳</div></div><div class="mini-score"><small>PLAYER CARD / 001</small><strong>MM_07</strong><span>BUILD · COMPETE · REPEAT</span></div>
@@ -35,7 +50,7 @@
  <div class="section-head reveal"><div><div class="section-num">03 / Half-time challenge</div><h2 class="section-title">YOUR PHOTO.<br>YOUR GOAL.</h2></div><p class="section-note">Drag your player and the ball toward the goal. Get the ball inside the net to score. Try it!</p></div>
  <div class="game-board" id="game-board" aria-label="Interactive football penalty game">
    <div class="goal" id="goal" aria-label="Goal post"></div>
-   <div class="player-piece" id="player-piece" role="img" aria-label="Draggable player portrait" tabindex="0" style="display:flex;align-items:center;justify-content:center;background:#ff6339;color:#111;border:3px solid #111;border-radius:55px 55px 15px 15px;font:12px var(--mono);text-align:center;padding:8px">MADHAV<br>PLAYER 07</div>
+   <div class="player-piece" id="player-piece" role="img" aria-label="Draggable Madhav player" tabindex="0"><img src="assets/madhav.jpg" alt="Madhav" onerror="this.remove();this.parentElement.style.color='#111';this.parentElement.style.display='flex';this.parentElement.style.alignItems='center';this.parentElement.style.justifyContent='center';this.parentElement.style.font='12px var(--mono)';this.parentElement.textContent='ADD PHOTO\nPLAYER 07';"></div>
    <div class="game-ball" id="game-ball" role="button" aria-label="Drag the football" tabindex="0">⚽</div>
  </div>
  <div class="game-tip"><span>Drag player + ball with mouse or touch</span><span class="game-message" id="game-message" aria-live="polite">READY WHEN YOU ARE.</span><button class="game-button" id="reset-game">Reset play ↺</button></div>

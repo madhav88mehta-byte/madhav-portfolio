@@ -46,13 +46,44 @@
 .reference-cover-image:not([src]),.reference-cover-image[src=""]{display:none}
 .reference-cover-image:not([src])+.reference-cover-fallback,.reference-cover-image[src=""]+.reference-cover-fallback{display:block}
 @media(max-width:600px){.reference-cover-image{aspect-ratio:4/5;object-fit:cover;object-position:center}.reference-cover-link:after{content:"SCROLL TO PLAY ↓";position:absolute;bottom:10px;right:12px;background:#d8ff38;color:#101010;padding:7px 9px;font:9px var(--mono);line-height:1}}
+
+/* Interactive cover stage with a styled fallback if the cover asset is missing. */
+.reference-cover{padding:0!important;min-height:0!important;height:auto!important;display:block!important;overflow:hidden;background:#071a32!important;border-bottom:1px solid var(--line)}
+.reference-cover:before{display:none!important}
+.reference-cover-stage{position:relative;width:100%;height:calc(100svh - 60px);min-height:620px;max-height:1050px;overflow:hidden;background:radial-gradient(ellipse at 20% 20%,#1555ac 0%,transparent 55%),linear-gradient(150deg,#101010 10%,#071a32 48%,#164d22 49%,#1b6429 100%);touch-action:pan-y}
+.reference-cover-image{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:center;z-index:1}
+.cover-fallback-art{display:none;position:absolute;inset:0;overflow:hidden;background:radial-gradient(ellipse at 28% 20%,#174ea7 0%,transparent 48%),linear-gradient(155deg,#101010 0%,#09264f 58%,#246b2d 58%,#15491f 100%);color:#f4f0e8}
+.cover-fallback-art:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 8%,#fff1 8.1% 8.2%),repeating-linear-gradient(0deg,transparent 0 8%,#fff1 8.1% 8.2%);transform:perspective(500px) rotateX(48deg) scale(1.6);transform-origin:bottom}
+.fallback-title{position:absolute;left:4%;top:12%;z-index:1;font:clamp(3rem,10vw,9rem)/.8 var(--display);letter-spacing:-.09em;max-width:60%}
+.fallback-title span{background:var(--lime);color:#101010;padding:0 .1em}.fallback-title small,.fallback-title b{display:block;font:clamp(9px,1vw,14px)/1.7 var(--mono);letter-spacing:.02em;margin-top:20px}.fallback-title b{color:var(--lime)}
+.fallback-pitch{position:absolute;inset:15% 3% 5%;border:2px solid #fff6;border-radius:10px;transform:perspective(500px) rotateX(12deg)}
+.fallback-pitch:before{content:"";position:absolute;left:50%;top:0;bottom:0;border-left:2px solid #fff6}.fallback-pitch:after{content:"";position:absolute;width:110px;height:110px;border:2px solid #fff6;border-radius:50%;left:calc(50% - 55px);top:calc(50% - 55px)}
+.fallback-goal{position:absolute;right:7%;bottom:17%;width:32%;height:28%;border:8px solid #f4f0e8;border-bottom:0;box-shadow:0 0 0 4px var(--orange)}
+.fallback-board{position:absolute;right:8%;top:9%;z-index:2;padding:14px;background:#111;border:2px solid var(--lime);font:11px/1.8 var(--mono);transform:rotate(3deg)}.fallback-board strong{color:var(--lime)}
+.cover-draggable-player{position:absolute;z-index:5;left:31%;bottom:3%;height:72%;width:19%;display:flex;align-items:flex-end;justify-content:center;cursor:grab;touch-action:none;user-select:none;filter:drop-shadow(4px 5px 0 #0008)}
+.cover-draggable-player img{height:100%;width:100%;object-fit:contain;object-position:center bottom;pointer-events:none}
+.cover-draggable-player b{position:absolute;right:0;bottom:40%;background:var(--lime);color:#101010;padding:7px;font:12px var(--display);transform:rotate(-8deg)}
+.cover-draggable-player:active,.cover-draggable-ball:active{cursor:grabbing}
+.player-emoji{font-size:clamp(70px,10vw,150px);background:var(--orange);border:4px solid #101010;border-radius:50% 50% 20% 20%;padding:18px}
+.cover-draggable-ball{position:absolute;z-index:7;left:51%;bottom:9%;width:60px;height:60px;display:grid;place-items:center;border-radius:50%;background:#f4f0e8;border:3px solid #101010;font-size:35px;cursor:grab;touch-action:none;user-select:none;box-shadow:4px 5px 0 #0008}
+.cover-draggable-goal{position:absolute;z-index:3;right:8%;bottom:19%;width:32%;height:31%;border:8px solid #f4f0e8;border-bottom:0;box-shadow:0 0 0 4px var(--orange);pointer-events:none}
+.cover-draggable-goal>span{position:absolute;top:-45px;left:0;background:#101010;color:var(--lime);padding:8px 12px;font:clamp(10px,1.2vw,15px) var(--display);white-space:nowrap;border:1px solid var(--lime)}
+.goal-net{position:absolute;inset:0;background-image:linear-gradient(#f4f0e855 1px,transparent 1px),linear-gradient(90deg,#f4f0e855 1px,transparent 1px);background-size:18px 18px}
+.cover-micro-links{position:absolute;z-index:8;right:3%;bottom:3%;display:flex;gap:7px;flex-wrap:wrap}.cover-micro-links a{background:#f4f0e8;color:#101010;padding:9px;border:2px solid #101010;border-radius:7px;font:9px var(--mono);box-shadow:3px 3px 0 #000}
+.cover-game-status{position:absolute;z-index:8;left:3%;bottom:3%;background:var(--lime);color:#101010;padding:10px 12px;font:10px var(--mono);max-width:45%}
+@media(max-width:700px){.reference-cover-stage{height:calc(100svh - 55px);min-height:670px}.fallback-title{top:9%;left:5%;font-size:clamp(3rem,14vw,5.5rem);max-width:92%}.fallback-title small,.fallback-title b{font-size:9px;margin-top:12px}.fallback-board{right:4%;top:35%;font-size:8px;padding:8px}.cover-draggable-player{left:17%;height:45%;width:34%;bottom:7%}.cover-draggable-player b{font-size:9px;padding:5px}.cover-draggable-ball{width:43px;height:43px;font-size:25px;left:48%;bottom:10%}.cover-draggable-goal{right:4%;width:44%;height:21%;bottom:25%;border-width:5px}.cover-draggable-goal>span{top:-36px;font-size:9px;padding:6px}.cover-micro-links{right:3%;bottom:3%;gap:4px}.cover-micro-links a{padding:6px;font-size:8px}.cover-game-status{left:3%;bottom:3%;font-size:8px;max-width:48%;padding:8px}}
 </style></head><body><div class="grain"></div>
 <nav class="topbar"><a href="#home" class="brand">MM<b>✳</b></a><div class="toplinks"><a href="#about">The human</a><a href="#sports">Match day</a><a href="#projects">The work</a><a href="#connect">Connect ↗</a></div><div class="live"><i></i> ALWAYS IN PLAY</div></nav>
 <main><header class="hero reference-cover" id="home" aria-label="Madhav.EXE portfolio cover">
-<a class="reference-cover-link" href="#projects" aria-label="Explore Madhav's portfolio projects">
-<img class="reference-cover-image" src="assets/madhav-cover.jpg" alt="MADHAV.EXE colorful football and cricket stadium portfolio cover" fetchpriority="high">
-<span class="reference-cover-fallback">Add the provided cover image to <code>assets/madhav-cover.jpg</code> in the GitHub repository to show the exact cover artwork.</span>
-</a>
+<div class="reference-cover-stage" id="cover-stage" aria-label="Interactive football cover">
+<img class="reference-cover-image" id="cover-art" src="assets/madhav-cover.jpg" alt="MADHAV.EXE colorful football and cricket stadium cover" fetchpriority="high" onerror="this.style.display='none';document.getElementById('cover-fallback-art').style.display='block';">
+<div class="cover-fallback-art" id="cover-fallback-art" aria-hidden="true"><div class="fallback-title">MADHAV<span>.EXE</span><small>STUDENT · DEVELOPER · CREATIVE THINKER</small><b>FOOTBALL FAN · CRICKET LOVER</b></div><div class="fallback-pitch"></div><div class="fallback-goal"></div><div class="fallback-board">CRICKET MODE<br><strong>RUNS 87 · WICKETS 3</strong></div></div>
+<div class="cover-draggable-player" id="cover-player" tabindex="0" role="img" aria-label="Drag Madhav across the pitch"><img src="assets/madhav.jpg" alt="Madhav" onerror="this.style.display='none';this.parentElement.classList.add('player-placeholder');this.parentElement.querySelector('.player-emoji').style.display='block';"><span class="player-emoji" style="display:none">😎</span><b>DRAG ME</b></div>
+<div class="cover-draggable-ball" id="cover-ball" tabindex="0" role="button" aria-label="Drag football into the goal">⚽</div>
+<div class="cover-draggable-goal" id="cover-goal" aria-label="Football goal"><span>YOUR GOAL<br>DRAG THE BALL & SCORE!</span><div class="goal-net"></div></div>
+<div class="cover-micro-links"><a href="https://github.com/madhav88mehta-byte" target="_blank" rel="noreferrer">GitHub ↗</a><a href="https://www.linkedin.com/in/madhav-mehta-a85a633a4/" target="_blank" rel="noreferrer">LinkedIn ↗</a><a href="https://www.instagram.com/madhavmehta817/" target="_blank" rel="noreferrer">Instagram ↗</a></div>
+<div class="cover-game-status" id="cover-game-status" aria-live="polite">DRAG YOUR PLAYER + BALL · SCORE A GOAL ⚽</div>
+</div>
 </header>
 <div class="marquee"><div class="marquee-track"><span>BUILD LOUD</span><span class="x">✳</span><span>PLAY DIFFERENT</span><span class="x">⚽</span><span>STAY CURIOUS</span><span class="x">🏏</span><span>BUILD LOUD</span><span class="x">✳</span><span>PLAY DIFFERENT</span><span class="x">⚽</span><span>STAY CURIOUS</span><span class="x">🏏</span></div></div>
 <section class="about" id="about"><div class="section-head reveal"><div><div class="section-num">01 / Off the pitch</div><h2 class="section-title">THE HUMAN<br>BEHIND THE TABS.</h2></div><p class="section-note">Not a corporate bio. A quick look at what keeps me curious.</p></div><div class="about-grid reveal"><div class="about-lead">Curious mind.<br><em>Creative energy.</em><br>Builder hands.</div><div class="about-copy"><p>Hey, I'm Madhav — a student who likes connecting technology with ideas that feel a little different. One day it's AI and data; the next, it's a product concept, a visual identity, or a project that started with a random “what if?”</p><p>I learn by building: testing the idea, understanding the moving parts, and making the result feel like more than another template. Outside the code, football and cricket keep the competitive side switched on.</p><div class="chips"><span class="chip">AI + machine learning</span><span class="chip">Python + data</span><span class="chip">Creative tech</span><span class="chip">Football ⚽</span><span class="chip">Cricket 🏏</span><span class="chip">Always experimenting</span></div></div></div></section>
@@ -75,6 +106,13 @@
 <script>
 
 const GITHUB_USER='madhav88mehta-byte';
+(()=>{
+ const board=document.getElementById('cover-stage'),goal=document.getElementById('cover-goal'),ball=document.getElementById('cover-ball'),player=document.getElementById('cover-player'),status=document.getElementById('cover-game-status');
+ if(!board||!goal||!ball||!player)return;let active=null,ox=0,oy=0,scored=false;
+ function checkGoal(){const b=ball.getBoundingClientRect(),g=goal.getBoundingClientRect();const inside=b.left+b.width/2>g.left+6&&b.left+b.width/2<g.right-6&&b.top+b.height/2>g.top+6&&b.top+b.height/2<g.bottom+6;if(inside&&!scored){scored=true;ball.textContent='🥅';ball.style.background='#d8ff38';status.textContent='GOOOAL! TOP CORNER! ⚽';status.style.background='#ff5cc8';}else if(!scored){status.textContent='NOT IN THE NET YET — KEEP PLAYING!';}}
+ [player,ball].forEach(el=>{el.addEventListener('pointerdown',e=>{if(e.button!==0)return;active=el;const r=el.getBoundingClientRect(),b=board.getBoundingClientRect();ox=e.clientX-r.left;oy=e.clientY-r.top;el.style.left=(r.left-b.left)+'px';el.style.top=(r.top-b.top)+'px';el.style.right='auto';el.style.bottom='auto';el.style.height=el===player?'72%':'';el.setPointerCapture(e.pointerId);e.preventDefault()});el.addEventListener('pointermove',e=>{if(active!==el)return;const b=board.getBoundingClientRect();el.style.left=Math.max(0,Math.min(b.width-el.offsetWidth,e.clientX-b.left-ox))+'px';el.style.top=Math.max(0,Math.min(b.height-el.offsetHeight,e.clientY-b.top-oy))+'px'});const stop=()=>{if(active===el){active=null;checkGoal()}};el.addEventListener('pointerup',stop);el.addEventListener('pointercancel',stop);el.addEventListener('keydown',e=>{const m={ArrowUp:[0,-12],ArrowDown:[0,12],ArrowLeft:[-12,0],ArrowRight:[12,0]};if(!m[e.key])return;e.preventDefault();const b=board.getBoundingClientRect(),r=el.getBoundingClientRect();el.style.left=Math.max(0,Math.min(b.width-el.offsetWidth,r.left-b.left+m[e.key][0]))+'px';el.style.top=Math.max(0,Math.min(b.height-el.offsetHeight,r.top-b.top+m[e.key][1]))+'px';el.style.right='auto';el.style.bottom='auto';checkGoal()})});
+})();
+
 /* Penalty mini-game: drag the player and ball. Score when the ball enters the goal. */
 (()=>{
  const board=document.getElementById('game-board'),goal=document.getElementById('goal'),ball=document.getElementById('game-ball'),player=document.getElementById('player-piece'),msg=document.getElementById('game-message');
